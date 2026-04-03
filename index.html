@@ -3,33 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Platform</title>
+    <title>EduStream | Modern Learning Platform</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>EduStream</h1>
-        <div class="controls">
+    <div class="blob"></div>
+    <div class="blob-2"></div>
+    <nav>
+        <div class="logo">Edu<span>Stream</span></div>
+        <div class="nav-controls">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search courses or skills...">
+            </div>
             <select id="categoryFilter">
                 <option value="all">All Categories</option>
-                <option value="Programming">Programming</option>
-                <option value="Design">Design</option>
-                <option value="Marketing">Marketing</option>
+                <option value="Programming">Development</option>
+                <option value="Marketing">Marketing & Growth</option>
+                <option value="Data Science">Data & AI</option>
+                <option value="Business">Business Analysis</option>
             </select>
-            <div id="savedCount">Saved Courses: 0</div>
         </div>
+        <div class="cart-status">
+            Saved: <span id="savedCount">0</span>
+        </div>
+    </nav>
+    <header class="hero">
+        <h1>Master New Skills with <span>Expert</span> Courses</h1>
+        <p>Explore professional-grade curricula designed for the next generation of leaders.</p>
     </header>
     <main id="courseGrid">
         </main>
-
     <div id="enrollModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Enroll in Course</h2>
+            <span class="close-btn">&times;</span>
+            <h2>Course Enrollment</h2>
+            <p>Please provide your details to access the curriculum.</p>
             <form id="enrollForm">
                 <input type="text" placeholder="Full Name" required>
                 <input type="email" placeholder="Email Address" required>
-                <button type="submit">Confirm Enrollment</button>
+                <button type="submit" class="enroll-confirm">Confirm Enrollment</button>
             </form>
         </div>
     </div>
