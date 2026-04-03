@@ -1,6 +1,1 @@
-EduStream - Modern Course Platform
-A frontend-focused educational platform featuring:
-Dynamic UI: Categorized landing pages for Development, Marketing, and Business.
-Search & Discovery: Real-time filtering and search functionality.
-Glassmorphism Design: Modern aesthetic with blur effects and responsive layouts.
-Tech Stack: HTML5, CSS3 (Modern Flex/Grid), and Vanilla JavaScript.
+EduStream is a modern, responsive frontend educational platform designed with a focus on seamless user experience and a Glassmorphism aesthetic. Built using a Single Page Application (SPA) architecture with vanilla HTML5, CSS3, and JavaScript, the project features dynamic UI morphing that transforms the interface into dedicated landing pages for categories like Development, Marketing, and Business Analysis. The platform implements real-time search and filtering logic, an interactive curriculum accordion for course modules, and a persistent Save for Later functionality. By utilizing CSS Grid and Flexbox for full responsiveness and hosting via GitHub Pages, the project demonstrates a professional-grade approach to modern web design and efficient DOM manipulation.
