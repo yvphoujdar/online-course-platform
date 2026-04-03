@@ -16,7 +16,6 @@ let savedCount = 0;
 function displayCourses(filter = "all", searchTerm = "") {
     const grid = document.getElementById('courseGrid');
     grid.innerHTML = "";
-    
     const filtered = courses.filter(c => {
         const matchesCat = filter === "all" || c.category === filter;
         const matchesSearch = c.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -29,11 +28,11 @@ function displayCourses(filter = "all", searchTerm = "") {
             <span class="category-tag">${course.category}</span>
             <h3 style="margin:15px 0">${course.title}</h3>
             <details style="margin-bottom:15px">
-                <summary style="cursor:pointer; font-size:0.9rem">View Modules</summary>
-                <ul style="padding-left:20px; font-size:0.85rem">${course.modules.map(m => `<li>${m}</li>`).join('')}</ul>
+                <summary style="cursor:pointer; font-size:0.9rem; color:#64748b">View Modules</summary>
+                <ul style="padding-left:20px; font-size:0.85rem; color:#475569">${course.modules.map(m => `<li>${m}</li>`).join('')}</ul>
             </details>
             <button class="enroll-btn" onclick="openModal()">Enroll Now</button>
-            <button style="background:none; border:none; color:var(--primary); cursor:pointer; width:100%; margin-top:10px" onclick="saveCourse()">Save for later</button>
+            <button style="background:none; border:none; color:var(--primary); cursor:pointer; width:100%; margin-top:10px; font-weight:600" onclick="saveCourse()">Save for later</button>
         `;
         grid.appendChild(card);
     });
@@ -66,5 +65,22 @@ function resetView() {
 const modal = document.getElementById('enrollModal');
 function openModal() { modal.style.display = "block"; }
 document.querySelector('.close-btn').onclick = () => modal.style.display = "none";
-function saveCourse() { savedCount++; document.getElementById('savedCount').innerText = savedCount; }
+window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+function saveCourse() {
+    savedCount++;
+    document.getElementById('savedCount').innerText = savedCount;
+}
+document.getElementById('enrollForm').onsubmit = (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.innerText = "Processing...";
+    btn.disabled = true;
+    setTimeout(() => {
+        alert("Welcome to EduStream! Enrollment successful.");
+        modal.style.display = "none";
+        btn.innerText = "Access Curriculum";
+        btn.disabled = false;
+        e.target.reset();
+    }, 1500);
+};
 displayCourses();
