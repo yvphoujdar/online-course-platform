@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduStream | Modern Learning Platform</title>
+    <title>EduStream | Pro Learning Platform</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
@@ -11,10 +11,10 @@
     <div class="blob"></div>
     <div class="blob-2"></div>
     <nav>
-        <div class="logo">Edu<span>Stream</span></div>
+        <div class="logo" onclick="resetView()" style="cursor:pointer">Edu<span>Stream</span></div>
         <div class="nav-controls">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search courses or skills...">
+                <input type="text" id="searchInput" placeholder="Search skills...">
             </div>
             <select id="categoryFilter">
                 <option value="all">All Categories</option>
@@ -24,21 +24,24 @@
                 <option value="Business">Business Analysis</option>
             </select>
         </div>
-        <div class="cart-status">
-            Saved: <span id="savedCount">0</span>
-        </div>
+        <div class="cart-status">Saved: <span id="savedCount">0</span></div>
     </nav>
-    <header class="hero">
+    <header class="hero" id="mainHero">
         <h1>Master New Skills with <span>Expert</span> Courses</h1>
         <p>Explore professional-grade curricula designed for the next generation of leaders.</p>
     </header>
-    <main id="courseGrid">
-        </main>
+    <header class="category-header" id="categoryHeader" style="display: none;">
+        <div class="header-content">
+            <button class="back-btn" onclick="resetView()">← Back to All</button>
+            <h1 id="catTitle">Category Title</h1>
+            <p id="catDesc">Category Description goes here.</p>
+        </div>
+    </header>
+    <main id="courseGrid"></main>
     <div id="enrollModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <h2>Course Enrollment</h2>
-            <p>Please provide your details to access the curriculum.</p>
             <form id="enrollForm">
                 <input type="text" placeholder="Full Name" required>
                 <input type="email" placeholder="Email Address" required>
