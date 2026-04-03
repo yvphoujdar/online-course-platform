@@ -1,38 +1,75 @@
 const courses = [
-    { id: 1, title: "Java Masterclass", category: "Programming", modules: ["Syntax", "OOP", "Collections"] },
-    { id: 2, title: "UI/UX Basics", category: "Design", modules: ["Figma", "Color Theory", "Prototyping"] },
-    { id: 3, title: "Digital Marketing", category: "Marketing", modules: ["SEO", "Ads", "Analytics"] },
-    { id: 4, title: "Python for Data Science", category: "Programming", modules: ["NumPy", "Pandas", "Matplotlib"] }
+    { 
+        id: 1, title: "Java Architecture & Design", category: "Programming", 
+        modules: ["JVM Internals", "Multithreading", "Spring Boot Integration"] 
+    },
+    { 
+        id: 2, title: "Growth Marketing & SEO", category: "Marketing", 
+        modules: ["Search Algorithms", "Conversion Rate Optimization", "Email Automations"] 
+    },
+    { 
+        id: 3, title: "Predictive AI Models", category: "Data Science", 
+        modules: ["Regression Analysis", "TensorFlow Basics", "Ethics in AI"] 
+    },
+    { 
+        id: 4, title: "Advanced Business Analysis", category: "Business", 
+        modules: ["Gap Analysis", "Stakeholder Matrix", "Agile Product Backlogs"] 
+    },
+    { 
+        id: 5, title: "Social Media ROI Strategy", category: "Marketing", 
+        modules: ["Paid Ad Funnels", "Influencer Partnerships", "Analytics Dashboards"] 
+    },
+    { 
+        id: 6, title: "Full Stack Development", category: "Programming", 
+        modules: ["React Hooks", "Node.js Streams", "NoSQL Database Design"] 
+    }
 ];
-let savedCourses = [];
-const courseGrid = document.getElementById('courseGrid');
-const categoryFilter = document.getElementById('categoryFilter');
-function displayCourses(filter = "all") {
-    courseGrid.innerHTML = "";
-    const filtered = filter === "all" ? courses : courses.filter(c => c.category === filter);
+let savedCount = 0;
+function displayCourses(filter = "all", searchTerm = "") {
+    const grid = document.getElementById('courseGrid');
+    grid.innerHTML = "";
+    const filtered = courses.filter(c => {
+        const matchesCat = filter === "all" || c.category === filter;
+        const matchesSearch = c.title.toLowerCase().includes(searchTerm.toLowerCase());
+        return matchesCat && matchesSearch;
+    });
     filtered.forEach(course => {
         const card = document.createElement('div');
         card.className = 'course-card';
         card.innerHTML = `
+            <span class="category-tag">${course.category}</span>
             <h3>${course.title}</h3>
-            <p><strong>Category:</strong> ${course.category}</p>
-            <details class="modules">
-                <summary>View Modules</summary>
-                <ul>${course.modules.map(m => `<li>${m}</li>`).join('')}</ul>
+            <details>
+                <summary>Curriculum Details</summary>
+                <ul>
+                    ${course.modules.map(m => `<li>${m}</li>`).join('')}
+                </ul>
             </details>
-            <button onclick="openModal()">Enroll</button>
-            <button class="save-btn" onclick="saveCourse(${course.id})">Save</button>
+            <button class="enroll-btn" onclick="openModal()">Enroll Now</button>
+            <button style="background:none; border:none; color:#6366f1; cursor:pointer; width:100%; margin-top:10px; font-weight:600" onclick="saveCourse()">
+                Save for later
+            </button>
         `;
-        courseGrid.appendChild(card);
+        grid.appendChild(card);
     });
 }
-categoryFilter.addEventListener('change', (e) => displayCourses(e.target.value));
-function saveCourse(id) {
-    if (!savedCourses.includes(id)) {
-        savedCourses.push(id);
-        document.getElementById('savedCount').innerText = `Saved Courses: ${savedCourses.length}`;
-        alert("Course saved to your list!");
-function openModal() { document.getElementById('enrollModal').style.display = "block"; }
-document.querySelector('.close').onclick = () => document.getElementById('enrollModal').style.display = "none";
-
+document.getElementById('categoryFilter').addEventListener('change', (e) => {
+    displayCourses(e.target.value, document.getElementById('searchInput').value);
+});
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    displayCourses(document.getElementById('categoryFilter').value, e.target.value);
+});
+const modal = document.getElementById('enrollModal');
+function openModal() { modal.style.display = "block"; }
+document.querySelector('.close-btn').onclick = () => modal.style.display = "none";
+window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
+function saveCourse() {
+    savedCount++;
+    document.getElementById('savedCount').innerText = savedCount;
+}
+document.getElementById('enrollForm').onsubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you for enrolling! Our coordinators will contact you soon.");
+    modal.style.display = "none";
+};
 displayCourses();
