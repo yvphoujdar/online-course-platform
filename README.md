@@ -21,7 +21,9 @@ SaaS-Style Enrollment: Streamlined, validated registration forms featuring profe
 Save for Later: A persistent engagement tool that allows users to bookmark specific courses throughout their session.
 
 
- Technical StackFrontend: HTML5, CSS3, Vanilla JavaScript.
+ Technical 
+ 
+StackFrontend: HTML5, CSS3, Vanilla JavaScript.
  
 Design: Custom "Glassmorphism" UI with frosted glass effects and fluid CSS Grid/Flexbox layouts.
 
